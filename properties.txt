@@ -1,0 +1,5 @@
+IUserProfileService = com.estesfitnesshelp.model.services.UserProfileImpl
+IWeightLogService = com.estesfitnesshelp.model.services.WeightLogImpl
+IWeightExerciseService = com.estesfitnesshelp.model.services.WeightExerciseImpl
+ICardioExerciseService = com.estesfitnesshelp.model.services.CardioExerciseImpl
+ICardioLogService = com.estesfitnesshelp.model.services.CardioLogImpl

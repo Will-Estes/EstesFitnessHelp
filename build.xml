@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<project name="EstesFitnessHelp" basedir=".">
+	<property name="src.dir" value="${basedir}/src"/>
+	<property name="config.dir" value="${basedir}/config"/>
+	<property name="bin.dir" value="${basedir}/bin"/>
+	<property name="build.dir" value="${basedir}/build"/>
+	<property name="lib.dir" value="${basedir}/lib"/>
+	<property name="main-class" value="com.estesfitnesshelp.view.mainjframe.MainJFrame"/>
+	
+ 	<target name="clean" description="deletes and creates the build directory">
+		<delete dir="${bin.dir}"/>
+ 		<mkdir dir="${bin.dir}"/>
+ 		<delete dir="${build.dir}"/>
+ 		<mkdir dir="${build.dir}"/>
+ 	</target>
+	
+	<target name="compile" depends="clean">
+		<javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false"/>
+	</target>	
+	
+	<target name="buildjar" depends="compile">
+		<jar jarfile="${build.dir}/EstesFitnessHelp.jar">
+			<fileset dir="${basedir}">
+				<include name="config/*"/>
+			</fileset>
+			<fileset dir="${bin.dir}">
+				<include name="**/*.class"/>
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="${main-class}"/>
+			</manifest>
+		</jar>
+		<copy todir="${build.dir}">
+			<fileset dir="${basedir}">
+				<include name="config*/**/*"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="testjar" depends="buildjar">
+		<java jar="${build.dir}/EstesFitnessHelp.jar" fork="yes" dir=".">
+		</java>
+	</target>
+</project>
